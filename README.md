@@ -33,15 +33,15 @@ Example:
         </tr>
         <tr>
             <th align="left">type</th>
-            <th align="left"></h5>String</h5></th>
-            <th align="left">The type of crafting recipe.<h6>For the usage of this mod, it will always be "anvilrecipe:anvil_working"</h6></th>
+            <th align="left"><sub>String<sub></th>
+            <th align="left">The type of crafting recipe.<br><sub>For the usage of this mod, it will always be "anvilrecipe:anvil_working"</sub></th>
             <th align="center">`True`</th>
             <th align="center"></th>
             <th align="center">"anvilrecipe:anvil_working"</th>
         </tr>
         <tr>
             <th align="left">shapeless</th>
-            <th align="left"><h5>Boolean</h5></th>
+            <th align="left"><sub>Boolean</sub></th>
             <th align="left">Sets whether the crafting recipe requires the first ingredient to be in the first slot or not.</th>
             <th align="center">`False`</th>
             <th align="center">true</th>
@@ -49,7 +49,7 @@ Example:
         </tr>
         <tr>
             <th align="left">firstingredient</th>
-            <th align="left"><h5>Ingredient</h5></th>
+            <th align="left"><sub>Ingredient</sub></th>
             <th align="left">The item that will be put in to the first slot of the anvil</th>
             <th align="center">`True`</th>
             <th align="center"></th>
@@ -65,7 +65,7 @@ Example:
         </tr>
         <tr>
             <th align="left">secondingredient</th>
-            <th align="left"><h5>Ingredient</h5></th>
+            <th align="left"><sub>Ingredient</sub></th>
             <th align="left">The item that will be put in to the second slot of the anvil</th>
             <th align="center">`True`</th>
             <th align="center"></th>
@@ -82,7 +82,7 @@ Example:
         </tr>
         <tr>
             <th align="left">count</th>
-            <th align="left"><h5>Integer</h5></th>
+            <th align="left"><sub>Integer</sub></th>
             <th align="left">Child of an ingredient object, determines how many of this item is required for the crafting recipe</th>
             <th align="center">`False`</th>
             <th align="center">1</th>
@@ -90,7 +90,7 @@ Example:
         </tr>
         <tr>
             <th align="left">levelcost</th>
-            <th align="left"><h5>Integer</h5></th>
+            <th align="left"><sub>Integer</sub></th>
             <th align="left">The required amount of levels to craft this recipe</th>
             <th align="center">`False`</th>
             <th align="center">0</th>
@@ -98,7 +98,7 @@ Example:
         </tr>
         <tr>
             <th align="left">result</th>
-            <th align="left"><h5>ItemStack</h5></th>
+            <th align="left"><sub>ItemStack</sub></th>
             <th align="left">The result of the crafting recipe</th>
             <th align="center">`True`</th>
             <th align="center"></th>
