@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:smithing",
+    "firstIngredient": {
+        "item": "minecraft:netherite_ingot",
+        "count": 2
+    },
+    "secondIngredient": {
+        "item": "minecraft:diamond_sword",
+        "count": 1
+    },
+    "result": "minecraft:netherite_sword",
+    "experience": 30
+}

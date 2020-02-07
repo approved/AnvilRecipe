@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "package": "dev.odd.anvilrecipe.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "AnvilContainerMixin",
+        "AnvilScreenMixin"
+    ],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
