@@ -8,10 +8,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import dev.odd.anvilrecipe.recipe.AnvilContainerAccessor;
 import dev.odd.anvilrecipe.recipe.AnvilRecipe;
 import dev.odd.anvilrecipe.recipe.AnvilRecipeType;
 import net.fabricmc.api.EnvType;
@@ -28,7 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 @Mixin(AnvilContainer.class)
-public class AnvilContainerMixin extends Container {
+public class AnvilContainerMixin extends Container implements AnvilContainerAccessor {
 
     protected AnvilContainerMixin(ContainerType<?> type, int syncId) {
         super(type, syncId);
@@ -106,16 +106,21 @@ public class AnvilContainerMixin extends Container {
         }
     }
 
-    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/inventory/Inventory;setInvStack(ILnet/minecraft/item/ItemStack;)V"), method = "Lnet/minecraft/container/AnvilContainer$2;onTakeItem(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;")
-    public void onSetInvStack(Inventory inventory, int i, ItemStack itemStack) {
-        if(this.doesMatchRecipe) {
-            this.inventory.getInvStack(0).decrement(this.inputRepairCost);
-        }
-        else {
-            this.inventory.setInvStack(0, ItemStack.EMPTY);
-        }
-    }
-
     @Shadow
     public boolean canUse(PlayerEntity player){ return true; }
+
+    @Override
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    @Override
+    public int getInputRepairCost() {
+        return this.inputRepairCost;
+    }
+
+    @Override
+    public boolean getDoesMatchRecipe() {
+        return this.doesMatchRecipe;
+    }
 }

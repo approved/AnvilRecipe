@@ -3,6 +3,7 @@
     "package": "dev.odd.anvilrecipe.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
+        "AnvilContainer$2Mixin",
         "AnvilContainerMixin",
         "AnvilScreenMixin"
     ],
