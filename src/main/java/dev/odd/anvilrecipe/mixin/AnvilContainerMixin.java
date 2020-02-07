@@ -93,7 +93,7 @@ public class AnvilContainerMixin extends Container implements AnvilContainerAcce
                     if(recipe.matches(this.inventory, this.world))
                     {
                         this.doesMatchRecipe = true;
-                        this.levelCost.set(recipe.experienceLevels);
+                        this.levelCost.set(recipe.levelcost);
                         this.inputRepairCost = recipe.getInputCount();
                         this.repairItemUsage = recipe.getModifierCount();
                         ItemStack resultItem = recipe.craft(this.inventory);

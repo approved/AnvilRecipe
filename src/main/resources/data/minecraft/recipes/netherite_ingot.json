@@ -1,0 +1,16 @@
+{
+    "type": "anvilrecipe:anvil_working",
+    "firstingredient": {
+        "item": "minecraft:netherite_scrap",
+        "count": 4
+    },
+    "secondingredient": {
+        "item": "minecraft:gold_ingot",
+        "count": 4
+    },
+    "result": {
+        "item": "minecraft:netherite_ingot",
+        "count": 2
+    },
+    "levelcost": 0
+}

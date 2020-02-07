@@ -1,13 +1,15 @@
 {
-    "type": "minecraft:smithing",
-    "firstIngredient": {
+    "type": "anvilrecipe:anvil_working",
+    "shapeless": false,
+    "firstingredient": {
+        "item": "minecraft:diamond_sword"
+    },
+    "secondingredient": {
         "item": "minecraft:netherite_ingot",
         "count": 2
     },
-    "secondIngredient": {
-        "item": "minecraft:diamond_sword",
-        "count": 1
+    "result": {
+        "item": "minecraft:netherite_sword"
     },
-    "result": "minecraft:netherite_sword",
-    "experience": 30
+    "levelcost": 0
 }
