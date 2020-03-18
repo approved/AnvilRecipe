@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "nether-right",
+    "id": "anvilerecipe",
     "version": "${version}",
 
     "name": "Anvil Recipe",
