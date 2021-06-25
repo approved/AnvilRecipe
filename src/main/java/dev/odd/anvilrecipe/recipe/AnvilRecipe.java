@@ -13,10 +13,10 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.PacketByteBuf;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.registry.Registry;
 
 public abstract class AnvilRecipe implements Recipe<Inventory> {
@@ -28,8 +28,9 @@ public abstract class AnvilRecipe implements Recipe<Inventory> {
     public final int levelcost;
     public final boolean shapeless;
 
-    public AnvilRecipe(RecipeType<?> type, RecipeSerializer<?> serializer, Identifier id,  ItemStack inputItem, ItemStack modifierItem, ItemStack output, int levelcost, boolean shapeless) {
-        System.out.println("Registered Anvil Crafting Recipe Sucessfully: " + id.toString());
+    public AnvilRecipe(RecipeType<?> type, RecipeSerializer<?> serializer, Identifier id, ItemStack inputItem,
+            ItemStack modifierItem, ItemStack output, int levelcost, boolean shapeless) {
+        System.out.println("Registered Anvil Crafting Recipe Successfully: " + id.toString());
         this.type = type;
         this.serializer = serializer;
         this.id = id;
@@ -89,7 +90,7 @@ public abstract class AnvilRecipe implements Recipe<Inventory> {
 
         public T read(Identifier identifier, JsonObject jsonObject) {
             boolean shapeless = true;
-            if(jsonObject.has("shapeless")) {
+            if (jsonObject.has("shapeless")) {
                 shapeless = JsonHelper.getBoolean(jsonObject, "shapeless");
             }
 
@@ -145,9 +146,9 @@ public abstract class AnvilRecipe implements Recipe<Inventory> {
                 Item resultItem = Registry.ITEM.get(new Identifier(resultItemString));
 
                 int resultCount = 1;
-                if(resultObject.has("count")) {
+                if (resultObject.has("count")) {
                     resultCount = JsonHelper.getInt(resultObject, "count");
-                    if(resultCount > resultItem.getMaxCount()) {
+                    if (resultCount > resultItem.getMaxCount()) {
                         throw new JsonParseException("Result item count can not be higher than max item count");
                     } else if (resultCount < 1) {
                         throw new JsonParseException("Result item count must be higher than 0");
@@ -155,16 +156,18 @@ public abstract class AnvilRecipe implements Recipe<Inventory> {
                 }
 
                 int levelcost = 1;
-                if(jsonObject.has("levelcost")) {
+                if (jsonObject.has("levelcost")) {
                     levelcost = JsonHelper.getInt(jsonObject, "levelcost");
                 }
 
-                return this.recipeFactory.create(identifier, inputIngredient, modifierIngredient, new ItemStack(resultItem, resultCount), levelcost, shapeless);
+                return this.recipeFactory.create(identifier, inputIngredient, modifierIngredient,
+                        new ItemStack(resultItem, resultCount), levelcost, shapeless);
             } else {
                 throw new JsonParseException("No result for smithing recipe");
             }
         }
 
+        @Override
         public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
             int i = packetByteBuf.readVarInt();
             DefaultedList<Ingredient> ingredients = DefaultedList.ofSize(i, Ingredient.EMPTY);
@@ -174,15 +177,18 @@ public abstract class AnvilRecipe implements Recipe<Inventory> {
             }
 
             ItemStack itemStack = packetByteBuf.readItemStack();
-            return this.recipeFactory.create(identifier, ingredients.get(0).getMatchingStacksClient()[0], ingredients.get(1).getMatchingStacksClient()[0], itemStack, 1, true);
+            return this.recipeFactory.create(identifier, ingredients.get(0).getMatchingStacksClient()[0],
+                    ingredients.get(1).getMatchingStacksClient()[0], itemStack, 1, true);
         }
 
+        @Override
         public void write(PacketByteBuf packetByteBuf, T smithingRecipe) {
             packetByteBuf.writeItemStack(smithingRecipe.output);
         }
 
         interface RecipeFactory<T extends AnvilRecipe> {
-            T create(Identifier identifier, ItemStack inputItem, ItemStack modifierItem, ItemStack result, int levelcost, boolean shaped);
+            T create(Identifier identifier, ItemStack inputItem, ItemStack modifierItem, ItemStack result,
+                    int levelcost, boolean shaped);
         }
     }
 }
