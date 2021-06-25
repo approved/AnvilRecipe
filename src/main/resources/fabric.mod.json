@@ -6,14 +6,14 @@
     "name": "Anvil Recipe",
     "description": "Adds anvil as a crafting type for recipes!",
     "authors": [
-        "Nick Kennedy"
+        "Approved"
     ],
     "contact": {
         "homepage": "http://minecraft.odd.dev/mods/AnvilRecipe",
         "sources": "https://github.com/approved/AnvilRecipe"
     },
 
-    "license": "CC0-1.0",
+    "license": "GPLv3",
     "icon": "assets/anvilrecipe/icon.png",
 
     "environment": "*",
@@ -25,10 +25,9 @@
     ],
 
     "depends": {
-        "fabricloader": ">=0.7.8",
-        "fabric": "*"
-    },
-    "suggests": {
-        "flamingo": "*"
+        "fabricloader": ">=0.11.3",
+        "fabric": "*",
+        "minecraft": "1.17.x",
+        "java": ">=16"
     }
 }
